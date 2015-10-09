@@ -1,0 +1,13 @@
+*** Information
+Abstract submitted to and Presentation given at the [[http://www.eoscience20.org/][Earth Observation Open
+Science 2.0 conference]] held in Frascati 12-14 October 2015.
+
+The presentation is hosted using github pages at
+http://cpaulik.github.io/2015-eoscience2.0
+
+
+*** License
+The documents in this repository are licensed is under a [[http://creativecommons.org/licenses/by/4.0/deed][Creative Commons
+Attribution 4.0 International]]
+
+[[http://creativecommons.org/licenses/by/4.0/deed][file:http://i.creativecommons.org/l/by/3.0/80x15.png]]
