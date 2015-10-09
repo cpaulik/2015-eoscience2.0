@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Toolbox for analysis of geospatial time series data.</title>
+<title>Tools for analysis of geospatial time series data.</title>
 <meta name="author" content="(Christoph Paulik, Sebastian Hahn, Andreea Plocon, Christoph Reimer, Alexander Gruber)"/>
 
 <link rel="stylesheet" href="http://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
@@ -24,15 +24,105 @@
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide" data-background="" data-background-size="200px" data-background-repeat="" data-background-transition="">
-<h1>Toolbox for analysis of geospatial time series data.</h1> <h2>Christoph Paulik, Sebastian Hahn, Andreea Plocon, Christoph Reimer, Alexander Gruber</h2> <h2><a href="mailto:christoph.paulik@geo.tuwien.ac.at">christoph.paulik@geo.tuwien.ac.at</a></h2> <h2></h2> <img width="200px" src="./GEO Logo Blau-Weiß.svg">
+<h1>Tools for analysis of geospatial time series data.</h1> <h2>Christoph Paulik, Sebastian Hahn, Andreea Plocon, Christoph Reimer, Alexander Gruber</h2> <h2><a href="mailto:christoph.paulik@geo.tuwien.ac.at">christoph.paulik@geo.tuwien.ac.at</a></h2> <h2></h2> <img width="200px" src="./GEO Logo Blau-Weiß.svg">
 </section>
 
 
 
 
 <section>
+<section id="slide-orgheadline3">
+<h2 id="orgheadline3">Background</h2>
+<ul>
+<li>Remote sensing of soil moisture</li>
+<li>Time series based retrieval algorithm</li>
+<li>Temporal dynamics are often more important for analysis than spatial distribution</li>
+<li>Grew out of soil moisture validation</li>
+
+</ul>
+
+
+</section>
 <section id="slide-orgheadline1">
-<h2 id="orgheadline1">none</h2>
+<h3 id="orgheadline1">Data preparation for time series analysis</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./img/data-prep.svg" >
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline2">
+<h3 id="orgheadline2">Typical workflow for time series analysis</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./img/workflow.svg" >
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline8">
+<h2 id="orgheadline8">The tools</h2>
+<div class="outline-text-2" id="text-orgheadline8">
+</div></section>
+<section id="slide-orgheadline4">
+<h3 id="orgheadline4">Spatial reference</h3>
+<ul>
+<li>Discrete Global grids
+<ul>
+<li>SMOS grid - Icosahedron Snyder Equal Area (ISEA)</li>
+<li>Gaussian Grids - used by ECMWF</li>
+
+</ul></li>
+<li>pygeogrids is a package for managing discrete (global) grids</li>
+<li>has a notion of subdivision that can correspond to I/O units (e.g. netCDF files)</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">Interface for data I/O</h3>
+<p>
+pygeobase defines abstract base classes for a common interface
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python">read_ts<span style="color: #e91e63;">(</span>gpi<span style="color: #e91e63;">)</span>
+read_ts<span style="color: #e91e63;">(</span>lon, lat<span style="color: #e91e63;">)</span>
+iter_ts<span style="color: #e91e63;">()</span>
+read_img<span style="color: #e91e63;">(</span>datetime<span style="color: #e91e63;">)</span>
+iter_img<span style="color: #e91e63;">(</span>startdate, enddate<span style="color: #e91e63;">)</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-orgheadline6">
+<h3 id="orgheadline6">Dataset that knows itself</h3>
+<ul>
+<li>Can traverse itself and return a time series per grid point</li>
+<li>Optimized I/O because grid object knows how data is stored</li>
+
+</ul>
+
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./img/Dataset.svg" >
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline7">
+<h3 id="orgheadline7">Data prepraration and algorithms</h3>
+<p>
+Pytesmo implements temporal matching, filtering, and algorithms specifically
+needed for soil moisture validation e.g. triple collocation.
+</p>
 </section>
 </section>
 </div>

@@ -38,4 +38,122 @@
 
 
 
-* 
+* Background
+
+- Remote sensing of soil moisture
+- Time series based retrieval algorithm
+- Temporal dynamics are often more important for analysis than spatial distribution
+- Grew out of soil moisture validation
+
+# image of soil moisture swath and time series
+
+** Data preparation for time series analysis
+
+# - Remote sensing data comes in "image" formats
+# - Working with level 1 data can be difficult (satellite swaths)
+#   - Resampling/projecting to a common grid
+#   - Sometimes temporal resampling (which we want to avoid)
+
+#+begin_src dot :file ./img/data-prep.svg :cmdline -Kdot -Tsvg
+digraph G {
+                resolution=100
+                rankdir=LR
+                bgcolor=Transparent
+                fontcolor=White
+                
+                node [style="filled", color=White, fontname="Hack" ,shape=box] //All nodes will this shape and colour
+                edge [color=Gray] //All the lines look like this
+                
+                data [label="RS data" shape=Mrecord]
+                resamp [label="Resampling"]
+                reproj [label="Reprojection"]
+                ts [label="Temporal resampling", color="#888888"]
+                store [label="Storage as DatasetTs" shape=Mrecord]
+
+                data->{resamp reproj}->ts->store
+                {rank=same; ts store}
+}
+#+end_src
+
+ #+RESULTS:
+ [[file:./img/data-prep.svg]]
+
+** Typical workflow for time series analysis
+
+# - Comparing geospatial time series on different grids
+#   - Nearest neighbor search
+#   - Spatial resampling necessary?
+#   - Temporal matching
+#   - Applying an algorithm
+#   - Writing results
+#+begin_src dot :file ./img/workflow.svg :cmdline -Kdot -Tsvg
+digraph G {
+                resolution=100
+                rankdir=LR
+                bgcolor=Transparent
+                fontcolor=White
+                
+                node [style="filled", color=White, fontname="Hack" ,shape=box] //All nodes will this shape and colour
+                edge [color=Gray] //All the lines look like this
+                
+                data [label="DatasetTs" shape=Mrecord]
+                data1 [label="DatasetTs" shape=Mrecord]
+                spatial [label="Spatial resampling"]
+                dataprep [label="Data preparation"]
+                algo [label="Algorithm"]
+                store [label="Storage of results" shape=Mrecord]
+
+                {data1 data}->spatial->dataprep->algo->store
+                {rank=same; data algo}
+}
+#+end_src
+
+#+RESULTS:
+[[file:./img/workflow.svg]]
+
+* The tools
+
+** Spatial reference
+- Discrete Global grids
+  - SMOS grid - Icosahedron Snyder Equal Area (ISEA)
+  - Gaussian Grids - used by ECMWF
+- pygeogrids is a package for managing discrete (global) grids
+- has a notion of subdivision that can correspond to I/O units (e.g. netCDF files)
+
+** Interface for data I/O
+pygeobase defines abstract base classes for a common interface
+
+#+begin_src python :results none :exports code
+read_ts(gpi)
+read_ts(lon, lat)
+iter_ts()
+read_img(datetime)
+iter_img(startdate, enddate)
+#+end_src
+
+** Dataset that knows itself
+
+- Can traverse itself and return a time series per grid point
+- Optimized I/O because grid object knows how data is stored
+ 
+#+begin_src dot :file ./img/Dataset.svg :cmdline -Kdot -Tsvg
+digraph structs {
+                fixedsize=true;
+                resolution=150
+                bgcolor=Transparent
+                
+                node [style="filled" fillcolor=White, color=Black, fontname="Hack" ,shape=box] //All nodes will this shape and colour
+                edge [color=Gray] //All the lines look like this
+                
+                data [label="{DatasetTs|.grid\n.read_ts()\n.iter_ts()}" shape=Mrecord]
+}
+#+end_src
+
+#+RESULTS:
+[[file:./img/Dataset.svg]]
+
+** Data prepraration and algorithms
+
+Pytesmo implements temporal matching, filtering, and algorithms specifically
+needed for soil moisture validation e.g. triple collocation.
+# show documentation with references

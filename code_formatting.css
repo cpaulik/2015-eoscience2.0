@@ -18,9 +18,10 @@
     font-size: 1em !important;
     text-transform: none;
 }
-#sec-title-slide img{
-    border: 0px;
-    background: none;
+img{
+    border: 0px !important;
+    background: none !important;
+    box-shadow: none !important;
 }
 h1 {font-size: 3em !important;}
 h2 {font-size: 2em !important;}
