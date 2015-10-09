@@ -1,0 +1,38 @@
+#+TITLE: Toolbox for analysis of geospatial time series data.
+* Abstract
+
+Earth observation data is often analyzed image by image since this is the
+natural format for most data captured by earth observation satellites. There are
+however numerous applications, ranging from hydrology to climate change analysis
+that require a detailed understanding of the temporal behaviour of geophysical
+processes. This is were complex time series analysis is often necessary. Current
+tools are often not optimized for that kind of data access since in the past
+datasets from high resolution satellites were sparse in time. But with the
+current ramp up of the Sentinel program also high resolution SAR and optical
+data will be available with dense temporal sampling.
+
+This lack of suitable software frameworks makes it necessary for each scientist
+or group to write custom code for data conversion and time series based
+analysis. Often the output of the analysis is then only available in custom
+ASCII or proprietary storage formats suggested by the specific programming
+environment.
+
+To confront these shortcomings we have developed a Python toolbox including the
+following features:
+ 
+- core support of the NetCDF CF (Climate and Forecast) Metadata Conventions,
+  especially Discrete Sampling Geometries.
+- conversion of supported image data/orbit swaths into a format optimized for
+  time series access.
+- easy handling of data defined on discrete global grids or collections of
+  in-situ stations.
+- an API for implementing support of new, non standardized datasets.
+- run custom or predefined time series based calculations or comparisons
+  (validation) on multiple datasets utilizing parallelization through IPython.
+- analysis results are automatically stored as CF-compliant netCDF files.
+- visualization of CF-compliant netCDF files in a web browser through a WMS-T
+  compatible visualization tool.
+
+The toolbox is structured into modules which are hosted on Github and licensed
+through a permissive open source license. Each release of the software has a DOI
+making it citeable and improving chances for reproducible research.
