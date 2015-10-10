@@ -111,6 +111,20 @@ digraph G {
 #+RESULTS:
 [[file:./img/workflow.svg]]
 
+** How to store time series
+- Resample to data cube 
+- Store as compressed sparse arrays
+- Climate and Forecast (CF) Metadata conventions http://cfconventions.org/
+
+** CF - Orthogonal multidimensional
+file:./img/CF-DSG-orthogonal-multidim.svg
+** CF - Incomplete multidimensional
+file:./img/CF-DSG-incomplete-multidim.svg
+** CF - Contiguous ragged
+file:./img/CF-DSG-contigous-ragged.svg
+** CF - Indexed ragged
+file:./img/CF-DSG-indexed-ragged.svg
+
 * The tools
 
 ** Spatial reference
