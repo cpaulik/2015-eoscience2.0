@@ -31,8 +31,8 @@
 
 
 <section>
-<section id="slide-orgheadline8">
-<h2 id="orgheadline8">Background</h2>
+<section id="slide-orgheadline9">
+<h2 id="orgheadline9">Background</h2>
 <ul>
 <li>Remote sensing of soil moisture</li>
 <li>Time series based retrieval algorithm</li>
@@ -64,65 +64,18 @@ Sorry, your browser does not support SVG.</object>
 
 </section>
 <section id="slide-orgheadline3">
-<h3 id="orgheadline3">How to store time series</h3>
-<ul>
-<li>Resample to data cube</li>
-<li>Store as compressed sparse arrays</li>
-<li>Climate and Forecast (CF) Metadata conventions <a href="http://cfconventions.org/">http://cfconventions.org/</a></li>
-
-</ul>
-
-</section>
-<section id="slide-orgheadline4">
-<h3 id="orgheadline4">CF - Orthogonal multidimensional</h3>
-
-<div class="figure">
-<p><object type="image/svg+xml" data="./img/CF-DSG-orthogonal-multidim.svg" >
-Sorry, your browser does not support SVG.</object>
-</p>
-</div>
-</section>
-<section id="slide-orgheadline5">
-<h3 id="orgheadline5">CF - Incomplete multidimensional</h3>
-
-<div class="figure">
-<p><object type="image/svg+xml" data="./img/CF-DSG-incomplete-multidim.svg" >
-Sorry, your browser does not support SVG.</object>
-</p>
-</div>
-</section>
-<section id="slide-orgheadline6">
-<h3 id="orgheadline6">CF - Contiguous ragged</h3>
-
-<div class="figure">
-<p><object type="image/svg+xml" data="./img/CF-DSG-contigous-ragged.svg" >
-Sorry, your browser does not support SVG.</object>
-</p>
-</div>
-</section>
-<section id="slide-orgheadline7">
-<h3 id="orgheadline7">CF - Indexed ragged</h3>
-
-<div class="figure">
-<p><object type="image/svg+xml" data="./img/CF-DSG-indexed-ragged.svg" >
-Sorry, your browser does not support SVG.</object>
-</p>
-</div>
-
-</section>
-</section>
-<section>
-<section id="slide-orgheadline14">
-<h2 id="orgheadline14">The tools</h2>
-<div class="outline-text-2" id="text-orgheadline14">
-</div></section>
-<section id="slide-orgheadline9">
-<h3 id="orgheadline9">Spatial referencing</h3>
+<h3 id="orgheadline3">Spatial referencing</h3>
 <ul>
 <li>Discrete Global grids
 <ul>
 <li>SMOS grid - Icosahedron Snyder Equal Area (ISEA)</li>
 <li>Gaussian Grids - used by ECMWF</li>
+
+</ul></li>
+<li>Grid systems
+<ul>
+<li>UTM system</li>
+<li>Equi7 system [<a class='org-ref-reference' href="#bauer2014optimisation">bauer2014optimisation</a>]</li>
 
 </ul></li>
 
@@ -135,6 +88,58 @@ Sorry, your browser does not support SVG.</object>
 </div>
 
 </section>
+<section id="slide-orgheadline4">
+<h3 id="orgheadline4">How to store time series</h3>
+<ul>
+<li>Resample to data cube</li>
+<li>Store as compressed sparse arrays</li>
+<li>Climate and Forecast (CF) Metadata conventions <a href="http://cfconventions.org/">http://cfconventions.org/</a></li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">CF - Orthogonal multidimensional</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./img/CF-DSG-orthogonal-multidim.svg" >
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</section>
+<section id="slide-orgheadline6">
+<h3 id="orgheadline6">CF - Incomplete multidimensional</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./img/CF-DSG-incomplete-multidim.svg" >
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</section>
+<section id="slide-orgheadline7">
+<h3 id="orgheadline7">CF - Contiguous ragged</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./img/CF-DSG-contigous-ragged.svg" >
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</section>
+<section id="slide-orgheadline8">
+<h3 id="orgheadline8">CF - Indexed ragged</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./img/CF-DSG-indexed-ragged.svg" >
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline17">
+<h2 id="orgheadline17">The tools</h2>
+<div class="outline-text-2" id="text-orgheadline17">
+</div></section>
 <section id="slide-orgheadline10">
 <h3 id="orgheadline10">pygeogrids</h3>
 <ul>
@@ -166,7 +171,11 @@ iter_img<span style="color: #e91e63;">(</span>startdate, enddate<span style="col
 
 </section>
 <section id="slide-orgheadline12">
-<h3 id="orgheadline12">Dataset that knows itself</h3>
+<h3 id="orgheadline12">Implemenation for netCDF</h3>
+
+</section>
+<section id="slide-orgheadline13">
+<h3 id="orgheadline13">Dataset that knows itself</h3>
 <ul>
 <li>Can traverse itself and return a time series per grid point</li>
 <li>Optimized I/O because grid object knows how data is stored</li>
@@ -181,11 +190,71 @@ Sorry, your browser does not support SVG.</object>
 </div>
 
 </section>
-<section id="slide-orgheadline13">
-<h3 id="orgheadline13">Data prepraration and algorithms</h3>
+<section id="slide-orgheadline14">
+<h3 id="orgheadline14">Algorithms and processing</h3>
+<ul>
+<li><a href="https://github.com/TUW-GEO/pytesmo">pytesmo
+<img src="./img/GitHub-Mark-Light-64px.png" alt="GitHub-Mark-Light-64px.png" /></a> implements temporal matching,
+filtering, and algorithms specifically needed for soil moisture validation
+e.g.
+<a href="http://rs.geo.tuwien.ac.at/validation_tool/pytesmo/docs/examples.html#triple-collocation-and-triple-collocation-based-scaling">triple
+collocation</a>.</li>
+<li>Framework for time series based computations parallelized via
+<a href="http://ipyparallel.readthedocs.org/en/latest/">ipyparallel</a> (formerly
+IPython parallel)</li>
+
+</ul>
+
+
+</section>
+<section id="slide-orgheadline15">
+<h3 id="orgheadline15">Example - global validation</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #EF6C00;">ecmwf_reader</span> = ECMWF.ERA_Interim<span style="color: #e91e63;">()</span>
+<span style="color: #EF6C00;">ascat_reader</span> = AscatH25_SSM<span style="color: #e91e63;">()</span>
+
+<span style="color: #EF6C00;">datasets</span> = <span style="color: #e91e63;">{</span><span style="color: #689f38;">'ASCAT'</span>: <span style="color: #1565C0;">{</span><span style="color: #689f38;">'class'</span>: ascat_reader,
+                      <span style="color: #689f38;">'columns'</span>: <span style="color: #EF6C00;">[</span><span style="color: #689f38;">'sm'</span><span style="color: #EF6C00;">]</span>,
+                      <span style="color: #689f38;">'type'</span>: <span style="color: #689f38;">'reference'</span><span style="color: #1565C0;">}</span>,
+            <span style="color: #689f38;">'ERAINT'</span>: <span style="color: #1565C0;">{</span><span style="color: #689f38;">'class'</span>: ecmwf_reader,
+                       <span style="color: #689f38;">'columns'</span>: <span style="color: #EF6C00;">[</span><span style="color: #689f38;">'soilm-l1'</span><span style="color: #EF6C00;">]</span>,
+                       <span style="color: #689f38;">'type'</span>: <span style="color: #689f38;">'other'</span>,
+                       <span style="color: #689f38;">'kwargs'</span>: <span style="color: #EF6C00;">{</span><span style="color: #689f38;">'period'</span>: period<span style="color: #EF6C00;">}</span>,
+                       <span style="color: #689f38;">'grids_compatible'</span>: <span style="color: #558b2f;">False</span>,
+                       <span style="color: #689f38;">'use_lut'</span>: <span style="color: #558b2f;">True</span>, <span style="color: #689f38;">'lut_max_dist'</span>: <span style="color: #689f38;">100000</span><span style="color: #1565C0;">}</span><span style="color: #e91e63;">}</span>
+
+<span style="color: #EF6C00;">process</span> = Validation<span style="color: #e91e63;">(</span>datasets=datasets,
+                     temporal_matcher=BasicTemporalMatching<span style="color: #1565C0;">()</span>,
+                     scaling=<span style="color: #689f38;">'lin_cdf_match'</span>, 
+                     metrics_calculator=BasicMetrics<span style="color: #1565C0;">()</span>,
+                     period=period<span style="color: #e91e63;">)</span>
+<span style="color: #EF6C00;">jobs</span> = process.get_processing_jobs<span style="color: #e91e63;">()</span>
+<span style="color: #00796b;">return</span> process, jobs
+</pre>
+</div>
+
+
+</section>
+<section id="slide-orgheadline16">
+<h3 id="orgheadline16">Where do the packages fit in</h3>
+
+<div class="figure">
+<p><object type="image/svg+xml" data="./img/workflow-packages.svg" >
+Sorry, your browser does not support SVG.</object>
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline18">
+<h2 id="orgheadline18">References</h2>
 <p>
-Pytesmo implements temporal matching, filtering, and algorithms specifically
-needed for soil moisture validation e.g. triple collocation.
+
+<h1 class='org-ref-bib-h1'>Bibliography</h1>
+<ul class='org-ref-bib'><li><a id="bauer2014optimisation">[bauer2014optimisation] Bauer-Marschallinger, Sabel & Wagner, Optimisation of global grids for high-resolution remote sensing data, <i>Computers & Geosciences</i>, <b>72</b>, 84-93 (2014).</a></li>
+</ul>
 </p>
 </section>
 </section>

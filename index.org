@@ -111,26 +111,13 @@ digraph G {
 #+RESULTS:
 [[file:./img/workflow.svg]]
 
-** How to store time series
-- Resample to data cube 
-- Store as compressed sparse arrays
-- Climate and Forecast (CF) Metadata conventions http://cfconventions.org/
-
-** CF - Orthogonal multidimensional
-file:./img/CF-DSG-orthogonal-multidim.svg
-** CF - Incomplete multidimensional
-file:./img/CF-DSG-incomplete-multidim.svg
-** CF - Contiguous ragged
-file:./img/CF-DSG-contigous-ragged.svg
-** CF - Indexed ragged
-file:./img/CF-DSG-indexed-ragged.svg
-
-* The tools
-
 ** Spatial referencing
 - Discrete Global grids
   - SMOS grid - Icosahedron Snyder Equal Area (ISEA)
   - Gaussian Grids - used by ECMWF
+- Grid systems
+  - UTM system
+  - Equi7 system [cite:bauer2014optimisation]
 
 #+begin_src python :results file :exports results
   from mpl_toolkits.basemap import Basemap
@@ -159,6 +146,21 @@ file:./img/CF-DSG-indexed-ragged.svg
 #+RESULTS:
 [[file:./img/dgg-globe.png]]
 
+** How to store time series
+- Resample to data cube 
+- Store as compressed sparse arrays
+- Climate and Forecast (CF) Metadata conventions http://cfconventions.org/
+
+** CF - Orthogonal multidimensional
+file:./img/CF-DSG-orthogonal-multidim.svg
+** CF - Incomplete multidimensional
+file:./img/CF-DSG-incomplete-multidim.svg
+** CF - Contiguous ragged
+file:./img/CF-DSG-contigous-ragged.svg
+** CF - Indexed ragged
+file:./img/CF-DSG-indexed-ragged.svg
+* The tools
+
 ** pygeogrids
 
 - [[https://github.com/TUW-GEO/pygeogrids][pygeogrids file:./img/GitHub-Mark-Light-64px.png]] is a package for managing discrete (global) grids
@@ -182,7 +184,10 @@ iter_img(startdate, enddate)
 #+begin_src org :exports none :tangle notes.org
 we also want to support some kind of slicing syntax in the future
 #+end_src
+# so now we have the interface but how do we store the time series
 
+
+** Implemenation for netCDF
 
 ** Dataset that knows itself
 
@@ -205,8 +210,96 @@ digraph structs {
 #+RESULTS:
 [[file:./img/Dataset.svg]]
 
-** Data prepraration and algorithms
+** Algorithms and processing
+- [[https://github.com/TUW-GEO/pytesmo][pytesmo
+  file:./img/GitHub-Mark-Light-64px.png]] implements temporal matching,
+  filtering, and algorithms specifically needed for soil moisture validation
+  e.g.
+  [[http://rs.geo.tuwien.ac.at/validation_tool/pytesmo/docs/examples.html#triple-collocation-and-triple-collocation-based-scaling][triple
+  collocation]].
+- Framework for time series based computations parallelized via
+  [[http://ipyparallel.readthedocs.org/en/latest/][ipyparallel]] (formerly
+  IPython parallel)
 
-Pytesmo implements temporal matching, filtering, and algorithms specifically
-needed for soil moisture validation e.g. triple collocation.
-# show documentation with references
+
+** Example - global validation
+#+begin_src python :results code :exports code
+  ecmwf_reader = ECMWF.ERA_Interim()
+  ascat_reader = AscatH25_SSM()
+
+  datasets = {'ASCAT': {'class': ascat_reader,
+                        'columns': ['sm'],
+                        'type': 'reference'},
+              'ERAINT': {'class': ecmwf_reader,
+                         'columns': ['soilm-l1'],
+                         'type': 'other',
+                         'kwargs': {'period': period},
+                         'grids_compatible': False,
+                         'use_lut': True, 'lut_max_dist': 100000}}
+
+  process = Validation(datasets=datasets,
+                       temporal_matcher=BasicTemporalMatching(),
+                       scaling='lin_cdf_match', 
+                       metrics_calculator=BasicMetrics(),
+                       period=period)
+  jobs = process.get_processing_jobs()
+  return process, jobs
+#+end_src
+
+
+** Where do the packages fit in
+#+begin_src dot :file ./img/data-prep-packages.svg :cmdline -Kdot -Tsvg :exports none
+digraph G {
+                resolution=100
+                rankdir=LR
+                bgcolor=Transparent
+                fontcolor=White
+                
+                node [style="filled", color=White, fontname="Hack" ,shape=box] //All nodes will this shape and colour
+                edge [color=Gray fontname="Hack" fontcolor="lightGreen"] //All the lines look like this
+                
+                data [label="RS data" shape=Mrecord]
+                resamp [label="Resampling"]
+                reproj [label="Reprojection"]
+                store [label="Storage as DatasetTs" shape=Mrecord]
+
+                data->{resamp reproj} [label="pygeobase"]
+                {resamp reproj}->store [label="pynetCF"]
+                {rank=same; store}
+}
+#+end_src
+
+#+RESULTS:
+[[file:./img/data-prep-packages.svg]]
+
+#+begin_src dot :file ./img/workflow-packages.svg :cmdline -Kdot -Tsvg
+digraph G {
+                resolution=100
+                rankdir=LR
+                bgcolor=Transparent
+                fontcolor=White
+                
+                node [style="filled", color=White, fontname="Hack" ,shape=box] //All nodes will this shape and colour
+                edge [color=Gray fontname="Hack" fontcolor="#42affa"] //All the lines look like this
+                
+                data [label="DatasetTs" shape=Mrecord]
+                data1 [label="DatasetTs" shape=Mrecord]
+                spatial [label="Spatial matching"]
+                dataprep [label="Data preparation"]
+                algo [label="Algorithm"]
+                store [label="Storage of results" shape=Mrecord]
+
+                {data1 data}->spatial [label="pygeogrids"]
+                spatial->dataprep [label="pytesmo"]
+                dataprep->algo [label="pytesmo"]
+                algo->store [label="pynetCF"]
+                {rank=same; data algo}
+}
+#+end_src
+
+#+RESULTS:
+[[file:./img/workflow-packages.svg]]
+
+* References 
+bibliographystyle:plain
+bibliography:/home/cp/Dropbox/Arbeit/Papers/bibliography.bib
