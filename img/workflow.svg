@@ -16,8 +16,8 @@
 </g>
 <!-- spatial -->
 <g id="node3" class="node"><title>spatial</title>
-<polygon fill="White" stroke="White" points="293.5,-129 128.5,-129 128.5,-93 293.5,-93 293.5,-129"/>
-<text text-anchor="middle" x="211" y="-107.3" font-family="Hack" font-size="14.00">Spatial resampling</text>
+<polygon fill="White" stroke="White" points="285.5,-129 136.5,-129 136.5,-93 285.5,-93 285.5,-129"/>
+<text text-anchor="middle" x="211" y="-107.3" font-family="Hack" font-size="14.00">Spatial matching</text>
 </g>
 <!-- data&#45;&gt;spatial -->
 <g id="edge1" class="edge"><title>data&#45;&gt;spatial</title>
@@ -31,8 +31,8 @@
 </g>
 <!-- data1&#45;&gt;spatial -->
 <g id="edge2" class="edge"><title>data1&#45;&gt;spatial</title>
-<path fill="none" stroke="Gray" d="M91.5405,-103.733C99.9164,-104.246 108.953,-104.801 118.169,-105.366"/>
-<polygon fill="Gray" stroke="Gray" points="118.021,-108.864 128.216,-105.983 118.45,-101.877 118.021,-108.864"/>
+<path fill="none" stroke="Gray" d="M91.5405,-103.733C102.366,-104.397 114.295,-105.129 126.287,-105.864"/>
+<polygon fill="Gray" stroke="Gray" points="126.158,-109.363 136.354,-106.482 126.587,-102.376 126.158,-109.363"/>
 </g>
 <!-- dataprep -->
 <g id="node4" class="node"><title>dataprep</title>
@@ -41,8 +41,8 @@
 </g>
 <!-- spatial&#45;&gt;dataprep -->
 <g id="edge3" class="edge"><title>spatial&#45;&gt;dataprep</title>
-<path fill="none" stroke="Gray" d="M293.704,-101.213C302.433,-100.167 311.325,-99.1017 320.08,-98.053"/>
-<polygon fill="Gray" stroke="Gray" points="320.764,-101.496 330.277,-96.8314 319.931,-94.5458 320.764,-101.496"/>
+<path fill="none" stroke="Gray" d="M285.683,-102.173C296.97,-100.821 308.694,-99.4169 320.18,-98.0409"/>
+<polygon fill="Gray" stroke="Gray" points="320.684,-101.506 330.197,-96.841 319.851,-94.5553 320.684,-101.506"/>
 </g>
 <!-- algo -->
 <g id="node5" class="node"><title>algo</title>

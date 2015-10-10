@@ -98,7 +98,7 @@ digraph G {
                 
                 data [label="DatasetTs" shape=Mrecord]
                 data1 [label="DatasetTs" shape=Mrecord]
-                spatial [label="Spatial resampling"]
+                spatial [label="Spatial matching"]
                 dataprep [label="Data preparation"]
                 algo [label="Algorithm"]
                 store [label="Storage of results" shape=Mrecord]
@@ -127,15 +127,49 @@ file:./img/CF-DSG-indexed-ragged.svg
 
 * The tools
 
-** Spatial reference
+** Spatial referencing
 - Discrete Global grids
   - SMOS grid - Icosahedron Snyder Equal Area (ISEA)
   - Gaussian Grids - used by ECMWF
-- pygeogrids is a package for managing discrete (global) grids
+
+#+begin_src python :results file :exports results
+  from mpl_toolkits.basemap import Basemap
+  import matplotlib.pyplot as plt
+  import numpy as np
+  fig = plt.figure()
+  fig.patch.set_alpha(0)
+  ax = fig.add_subplot(111)
+  # set up orthographic m projection with
+  # perspective of satellite looking down at 50N, 100W.
+  # use low resolution coastlines.
+  m = Basemap(projection='ortho',lat_0=45,lon_0=-100,resolution='l', ax=ax)
+  # draw coastlines, country boundaries, fill continents.
+  m.drawcoastlines(linewidth=0.25)
+  m.drawcountries(linewidth=0.25)
+  m.fillcontinents(color='#888888',lake_color='#006699')
+  # draw the edge of the m projection region (the projection limb)
+  m.drawmapboundary(fill_color='#006699')
+  # draw lat/lon grid lines every 30 degrees.
+  # m.drawmeridians(np.arange(0,360,30))
+  # m.drawparallels(np.arange(-90,90,30))
+  plt.savefig("img/dgg-globe.png", dpi=300)
+  return './img/dgg-globe.png'
+#+end_src
+
+#+RESULTS:
+[[file:./img/dgg-globe.png]]
+
+** pygeogrids
+
+- [[https://github.com/TUW-GEO/pygeogrids][pygeogrids file:./img/GitHub-Mark-Light-64px.png]] is a package for managing discrete (global) grids
 - has a notion of subdivision that can correspond to I/O units (e.g. netCDF files)
+- Nearest neighbor search
+- Can yield grid points in "correct" order
+- Calculation of lookup tables between grid objects
+- I/O to netCDF
 
 ** Interface for data I/O
-pygeobase defines abstract base classes for a common interface
+[[https://github.com/TUW-GEO/pygeobase][pygeobase file:./img/GitHub-Mark-Light-64px.png]] defines abstract base classes for a common interface
 
 #+begin_src python :results none :exports code
 read_ts(gpi)
@@ -144,6 +178,11 @@ iter_ts()
 read_img(datetime)
 iter_img(startdate, enddate)
 #+end_src
+
+#+begin_src org :exports none :tangle notes.org
+we also want to support some kind of slicing syntax in the future
+#+end_src
+
 
 ** Dataset that knows itself
 

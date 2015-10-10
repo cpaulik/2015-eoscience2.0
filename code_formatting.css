@@ -18,6 +18,10 @@
     font-size: 1em !important;
     text-transform: none;
 }
+a img{
+    margin: -5px 0px !important;
+    height: 1em;
+}
 img{
     border: 0px !important;
     background: none !important;
