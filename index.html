@@ -77,7 +77,7 @@ Sorry, your browser does not support SVG.</object>
 <li>Grid systems
 <ul>
 <li>UTM system</li>
-<li>Equi7 system [cite:bauer2014optimisation]</li>
+<li>Equi7 system [<a class='org-ref-reference' href="#bauer2014optimisation">bauer2014optimisation</a>]</li>
 
 </ul></li>
 
@@ -215,26 +215,26 @@ IPython parallel)</li>
 <h3 id="orgheadline14">Example - global validation</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #ffcc80;">ecmwf_reader</span> = ECMWF.ERA_Interim<span style="color: #e91e63;">()</span>
-<span style="color: #ffcc80;">ascat_reader</span> = AscatH25_SSM<span style="color: #e91e63;">()</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">ecmwf_reader</span> = ECMWF.ERA_Interim<span style="color: #e91e63;">()</span>
+<span style="color: #EF6C00;">ascat_reader</span> = AscatH25_SSM<span style="color: #e91e63;">()</span>
 
-<span style="color: #ffcc80;">datasets</span> = <span style="color: #e91e63;">{</span><span style="color: #9ccc65;">'ASCAT'</span>: <span style="color: #2196F3;">{</span><span style="color: #9ccc65;">'class'</span>: ascat_reader,
-                      <span style="color: #9ccc65;">'columns'</span>: <span style="color: #EF6C00;">[</span><span style="color: #9ccc65;">'sm'</span><span style="color: #EF6C00;">]</span>,
-                      <span style="color: #9ccc65;">'type'</span>: <span style="color: #9ccc65;">'reference'</span><span style="color: #2196F3;">}</span>,
-            <span style="color: #9ccc65;">'ERAINT'</span>: <span style="color: #2196F3;">{</span><span style="color: #9ccc65;">'class'</span>: ecmwf_reader,
-                       <span style="color: #9ccc65;">'columns'</span>: <span style="color: #EF6C00;">[</span><span style="color: #9ccc65;">'soilm-l1'</span><span style="color: #EF6C00;">]</span>,
-                       <span style="color: #9ccc65;">'type'</span>: <span style="color: #9ccc65;">'other'</span>,
-                       <span style="color: #9ccc65;">'kwargs'</span>: <span style="color: #EF6C00;">{</span><span style="color: #9ccc65;">'period'</span>: period<span style="color: #EF6C00;">}</span>,
-                       <span style="color: #9ccc65;">'grids_compatible'</span>: <span style="color: #8bc34a;">False</span>,
-                       <span style="color: #9ccc65;">'use_lut'</span>: <span style="color: #8bc34a;">True</span>, <span style="color: #9ccc65;">'lut_max_dist'</span>: <span style="color: #9ccc65;">100000</span><span style="color: #2196F3;">}</span><span style="color: #e91e63;">}</span>
+<span style="color: #EF6C00;">datasets</span> = <span style="color: #e91e63;">{</span><span style="color: #689f38;">'ASCAT'</span>: <span style="color: #1565C0;">{</span><span style="color: #689f38;">'class'</span>: ascat_reader,
+                      <span style="color: #689f38;">'columns'</span>: <span style="color: #EF6C00;">[</span><span style="color: #689f38;">'sm'</span><span style="color: #EF6C00;">]</span>,
+                      <span style="color: #689f38;">'type'</span>: <span style="color: #689f38;">'reference'</span><span style="color: #1565C0;">}</span>,
+            <span style="color: #689f38;">'ERAINT'</span>: <span style="color: #1565C0;">{</span><span style="color: #689f38;">'class'</span>: ecmwf_reader,
+                       <span style="color: #689f38;">'columns'</span>: <span style="color: #EF6C00;">[</span><span style="color: #689f38;">'soilm-l1'</span><span style="color: #EF6C00;">]</span>,
+                       <span style="color: #689f38;">'type'</span>: <span style="color: #689f38;">'other'</span>,
+                       <span style="color: #689f38;">'kwargs'</span>: <span style="color: #EF6C00;">{</span><span style="color: #689f38;">'period'</span>: period<span style="color: #EF6C00;">}</span>,
+                       <span style="color: #689f38;">'grids_compatible'</span>: <span style="color: #558b2f;">False</span>,
+                       <span style="color: #689f38;">'use_lut'</span>: <span style="color: #558b2f;">True</span>, <span style="color: #689f38;">'lut_max_dist'</span>: <span style="color: #689f38;">100000</span><span style="color: #1565C0;">}</span><span style="color: #e91e63;">}</span>
 
-<span style="color: #ffcc80;">process</span> = Validation<span style="color: #e91e63;">(</span>datasets=datasets,
-                     temporal_matcher=BasicTemporalMatching<span style="color: #2196F3;">()</span>,
-                     scaling=<span style="color: #9ccc65;">'lin_cdf_match'</span>, 
-                     metrics_calculator=BasicMetrics<span style="color: #2196F3;">()</span>,
+<span style="color: #EF6C00;">process</span> = Validation<span style="color: #e91e63;">(</span>datasets=datasets,
+                     temporal_matcher=BasicTemporalMatching<span style="color: #1565C0;">()</span>,
+                     scaling=<span style="color: #689f38;">'lin_cdf_match'</span>, 
+                     metrics_calculator=BasicMetrics<span style="color: #1565C0;">()</span>,
                      period=period<span style="color: #e91e63;">)</span>
-<span style="color: #ffcc80;">jobs</span> = process.get_processing_jobs<span style="color: #e91e63;">()</span>
-<span style="color: #fff59d;">return</span> process, jobs
+<span style="color: #EF6C00;">jobs</span> = process.get_processing_jobs<span style="color: #e91e63;">()</span>
+<span style="color: #00796b;">return</span> process, jobs
 </pre>
 </div>
 
@@ -290,6 +290,7 @@ Sorry, your browser does not support SVG.</object></a></li>
 <li><a href="https://github.com/TUW-GEO">TUW-GEO <img src="./img/GitHub-Mark-Light-64px.png" alt="GitHub-Mark-Light-64px.png" /></a></li>
 
 </ul></li>
+<li>Thanks to the Python open source community.</li>
 
 </ul>
 
@@ -299,8 +300,10 @@ Sorry, your browser does not support SVG.</object></a></li>
 <section id="slide-orgheadline19">
 <h2 id="orgheadline19">References</h2>
 <p>
-bibliographystyle:plain
-bibliography:/home/cp/Dropbox/Arbeit/Papers/bibliography.bib
+
+<h1 class='org-ref-bib-h1'>Bibliography</h1>
+<ul class='org-ref-bib'><li><a id="bauer2014optimisation">[bauer2014optimisation] Bauer-Marschallinger, Sabel & Wagner, Optimisation of global grids for high-resolution remote sensing data, <i>Computers & Geosciences</i>, <b>72</b>, 84-93 (2014).</a></li>
+</ul>
 </p>
 </section>
 </section>

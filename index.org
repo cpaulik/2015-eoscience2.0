@@ -90,7 +90,7 @@ digraph G {
 #+begin_src dot :file ./img/workflow.svg :cmdline -Kdot -Tsvg
 digraph G {
                 resolution=100
-                rankdir=LR
+                rankdir=UD
                 bgcolor=Transparent
                 fontcolor=White
                 
@@ -104,8 +104,12 @@ digraph G {
                 algo [label="Algorithm"]
                 store [label="Storage of results" shape=Mrecord]
 
-                {data1 data}->spatial->dataprep->algo->store
-                {rank=same; data algo}
+                {data1}->spatial 
+                {data}->spatial 
+                spatial->dataprep 
+                dataprep->algo 
+                algo->store 
+                {rank=same; spatial algo}
 }
 #+end_src
 
@@ -348,9 +352,10 @@ digraph G {
 #+begin_src dot :file ./img/workflow-packages.svg :cmdline -Kdot -Tsvg
 digraph G {
                 resolution=100
-                rankdir=LR
+                rankdir=UD
                 bgcolor=Transparent
                 fontcolor=White
+                nodesep=1.0
                 
                 node [style="filled", color=White, fontname="Hack" ,shape=box] //All nodes will this shape and colour
                 edge [color=Gray fontname="Hack" fontcolor="#42affa"] //All the lines look like this
@@ -362,11 +367,12 @@ digraph G {
                 algo [label="Algorithm"]
                 store [label="Storage of results" shape=Mrecord]
 
-                {data1 data}->spatial [label="pygeogrids"]
+                {data1}->spatial 
+                {data}->spatial [label="pygeogrids"]
                 spatial->dataprep [label="pytesmo"]
                 dataprep->algo [label="pytesmo"]
                 algo->store [label="pynetCF"]
-                {rank=same; data algo}
+                {rank=same; spatial algo}
 }
 #+end_src
 
@@ -395,6 +401,7 @@ digraph G {
   - You can find this presentation at http://cpaulik.github.io/2015-eoscience2.0
   - [[https://github.com/cpaulik][cpaulik file:./img/GitHub-Mark-Light-64px.png]]
   - [[https://github.com/TUW-GEO][TUW-GEO file:./img/GitHub-Mark-Light-64px.png]]
+- Thanks to the Python open source community.
 
 * References 
 bibliographystyle:plain
