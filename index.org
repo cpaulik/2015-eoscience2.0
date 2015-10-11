@@ -165,6 +165,15 @@ digraph G {
 
 #+RESULTS:
 [[file:./img/dgg-globe.png]]
+** pygeogrids
+
+- [[https://github.com/TUW-GEO/pygeogrids][pygeogrids file:./img/GitHub-Mark-Light-64px.png]] is a package for managing discrete (global) grids
+- has a notion of subdivision that can correspond to I/O units (e.g. netCDF files)
+- Nearest neighbor search
+- Can yield grid points in "correct" order
+- Calculation of lookup tables between grid objects
+- I/O to netCDF
+# Better show graphic of cell-grid
 
 ** How to store time series
 - Resample to data cube 
@@ -179,17 +188,13 @@ file:./img/CF-DSG-incomplete-multidim.svg
 file:./img/CF-DSG-contigous-ragged.svg
 ** CF - Indexed ragged
 file:./img/CF-DSG-indexed-ragged.svg
-* The tools
 
-** pygeogrids
-
-- [[https://github.com/TUW-GEO/pygeogrids][pygeogrids file:./img/GitHub-Mark-Light-64px.png]] is a package for managing discrete (global) grids
-- has a notion of subdivision that can correspond to I/O units (e.g. netCDF files)
-- Nearest neighbor search
-- Can yield grid points in "correct" order
-- Calculation of lookup tables between grid objects
-- I/O to netCDF
-
+** Implemenation for netCDF
+- [[https://github.com/TUW-GEO/pynetCF][pynetCF file:./img/GitHub-Mark-Light-64px.png]] implements the interface for netCDF
+  files according to the CF conventions
+- Works but writing of data can be optimized
+- integration with general purpose packages ([[http://xray.readthedocs.org/en/stable/][xray]])
+ 
 ** Interface for data I/O
 [[https://github.com/TUW-GEO/pygeobase][pygeobase file:./img/GitHub-Mark-Light-64px.png]] defines abstract base classes for a common interface
 
@@ -202,17 +207,16 @@ iter_img(startdate, enddate)
 #+end_src
 
 #+begin_src org :exports none :tangle notes.org
-we also want to support some kind of slicing syntax in the future
+  - we also want to support some kind of slicing syntax in the future
+  - Internally we have implemented the interface for several formats (grib, hdf5)
+    but general purpose implementations are still missing
 #+end_src
 # so now we have the interface but how do we store the time series
-
-
-** Implemenation for netCDF
 
 ** Dataset that knows itself
 
 - Can traverse itself and return a time series per grid point
-- Optimized I/O because grid object knows how data is stored
+- Optimized I/O because dataset object knows how data is stored
  
 #+begin_src dot :file ./img/Dataset.svg :cmdline -Kdot -Tsvg
 digraph structs {
