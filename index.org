@@ -300,6 +300,29 @@ digraph G {
 #+RESULTS:
 [[file:./img/workflow-packages.svg]]
 
+* Summary
+- Suite of Python packages for time series optimized processing
+- [[https://github.com/TUW-GEO/pytesmo][pytesmo
+  file:./img/GitHub-Mark-Light-64px.png]]  
+  [[http://badge.fury.io/py/pytesmo][https://badge.fury.io/py/pytesmo.svg]]
+  [[http://dx.doi.org/10.5281/zenodo.29593][https://zenodo.org/badge/doi/10.5281/zenodo.29593.svg]]
+- [[https://github.com/TUW-GEO/pygeogrids][pygeogrids
+  file:./img/GitHub-Mark-Light-64px.png]]  
+  [[http://badge.fury.io/py/pygeogrids][https://badge.fury.io/py/pygeogrids.svg]]
+  [[http://dx.doi.org/10.5281/zenodo.31613][https://zenodo.org/badge/doi/10.5281/zenodo.17406.svg]]
+- [[https://github.com/TUW-GEO/pygeobase][pygeobase
+  file:./img/GitHub-Mark-Light-64px.png]]  
+  [[http://badge.fury.io/py/pygeobase][https://badge.fury.io/py/pygeobase.svg]]
+- [[https://github.com/TUW-GEO/pynetCF][pynetCF
+  file:./img/GitHub-Mark-Light-64px.png]]  
+# list of packages with badges and license
+* Thank you, Questions?
+- Get in touch
+  - christoph.paulik@geo.tuwien.ac.at
+  - You can find this presentation at http://cpaulik.github.io/2015-eoscience2.0
+  - [[https://github.com/cpaulik][cpaulik file:./img/GitHub-Mark-Light-64px.png]]
+  - [[https://github.com/TUW-GEO][TUW-GEO file:./img/GitHub-Mark-Light-64px.png]]
+
 * References 
 bibliographystyle:plain
 bibliography:/home/cp/Dropbox/Arbeit/Papers/bibliography.bib
