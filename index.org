@@ -111,6 +111,8 @@ digraph G {
 #+RESULTS:
 [[file:./img/workflow.svg]]
 
+
+
 ** Spatial referencing
 - Discrete Global grids
   - SMOS grid - Icosahedron Snyder Equal Area (ISEA)
@@ -129,16 +131,34 @@ digraph G {
   # set up orthographic m projection with
   # perspective of satellite looking down at 50N, 100W.
   # use low resolution coastlines.
-  m = Basemap(projection='ortho',lat_0=45,lon_0=-100,resolution='l', ax=ax)
+  m = Basemap(projection='ortho',lat_0=25,lon_0=15,resolution='l', ax=ax)
   # draw coastlines, country boundaries, fill continents.
   m.drawcoastlines(linewidth=0.25)
   m.drawcountries(linewidth=0.25)
-  m.fillcontinents(color='#888888',lake_color='#006699')
+  m.fillcontinents(color='#888888',lake_color='#006699', zorder=10)
   # draw the edge of the m projection region (the projection limb)
   m.drawmapboundary(fill_color='#006699')
   # draw lat/lon grid lines every 30 degrees.
   # m.drawmeridians(np.arange(0,360,30))
   # m.drawparallels(np.arange(-90,90,30))
+  # make 200km DGG for illustration
+  d = 200
+  R = 6371
+  c = R * 2*np.pi
+  fullstep = 360/(c/d)
+  lat = np.arange(-90, 90, fullstep)
+  cs = np.cos(lat/180*np.pi)*R*2*np.pi
+  steps = 360/(cs/d)
+  lons = []
+  lats = []
+  for step, l in zip(steps, lat):
+      ls = np.linspace(-180, 180, np.max([1, 360/step]))
+      lons.append(ls)
+      lats.append(np.full_like(ls, l))
+  lons = np.concatenate(lons)
+  lats = np.concatenate(lats)
+  m.scatter(lons.flatten(), lats.flatten(), latlon=True, s=2, marker='+', c='w', zorder=11)
+  plt.tight_layout()
   plt.savefig("img/dgg-globe.png", dpi=300)
   return './img/dgg-globe.png'
 #+end_src
