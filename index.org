@@ -8,6 +8,7 @@
 #+REVEAL_MIN_SCALE: -1
 #+REVEAL_MAX_SCALE: -1
 #+REVEAL_ROOT: http://cdn.jsdelivr.net/reveal.js/3.0.0/
+# #+REVEAL_ROOT: ../../reveal.js
 #+REVEAL_TRANS: default
 #+REVEAL_SPEED: default
 #+REVEAL_THEME: black
@@ -169,11 +170,59 @@ digraph G {
 
 - [[https://github.com/TUW-GEO/pygeogrids][pygeogrids file:./img/GitHub-Mark-Light-64px.png]] is a package for managing discrete (global) grids
 - has a notion of subdivision that can correspond to I/O units (e.g. netCDF files)
-- Nearest neighbor search
-- Can yield grid points in "correct" order
-- Calculation of lookup tables between grid objects
-- I/O to netCDF
+# - Nearest neighbor search
+# - Can yield grid points in "correct" order
+# - Calculation of lookup tables between grid objects
+# - I/O to netCDF
 # Better show graphic of cell-grid
+#+begin_src python :results file :exports results
+  from mpl_toolkits.basemap import Basemap
+  import matplotlib.pyplot as plt
+  import numpy as np
+  fig = plt.figure(figsize=(7,3))
+  fig.patch.set_alpha(0)
+  ax = fig.add_subplot(111)
+  # set up orthographic m projection with
+  # perspective of satellite looking down at 50N, 100W.
+  # use low resolution coastlines.
+  # m = Basemap(projection='ortho',lat_0=25,lon_0=15,resolution='l', ax=ax) # 
+  m = Basemap(llcrnrlon=-10.5,llcrnrlat=32.,urcrnrlon=45.566,urcrnrlat=56.352,\
+            rsphere=(6378137.00,6356752.3142),\
+            resolution='l',area_thresh=1000.,projection='lcc',\
+            lat_1=50.,lon_0=14.,ax=ax)
+  # draw coastlines, country boundaries, fill continents.
+  m.drawcoastlines(linewidth=0.25)
+  m.drawcountries(linewidth=0.25)
+  m.fillcontinents(color='#888888',lake_color='#006699', zorder=10)
+  # draw the edge of the m projection region (the projection limb)
+  m.drawmapboundary(fill_color='#006699', zorder=11)
+  # draw lat/lon grid lines every 30 degrees.
+  m.drawmeridians(np.arange(0,360,5), zorder=11, dashes=[1,0.1])
+  m.drawparallels(np.arange(-90,90,5), zorder=11, dashes=[1,0.1])
+  # make 200km DGG for illustration
+  d = 100
+  R = 6371
+  c = R * 2*np.pi
+  fullstep = 360/(c/d)
+  lat = np.arange(-90, 90, fullstep)
+  cs = np.cos(lat/180*np.pi)*R*2*np.pi
+  steps = 360/(cs/d)
+  lons = []
+  lats = []
+  for step, l in zip(steps, lat):
+      ls = np.linspace(-180, 180, np.max([1, 360/step]))
+      lons.append(ls)
+      lats.append(np.full_like(ls, l))
+  lons = np.concatenate(lons)
+  lats = np.concatenate(lats)
+  m.scatter(lons.flatten(), lats.flatten(), latlon=True, s=1, marker='+', c='w', zorder=12)
+  plt.tight_layout()
+  plt.savefig("img/cells-dgg.png", dpi=300)
+  return './img/cells-dgg.png'
+#+end_src
+
+#+RESULTS:
+[[file:./img/cells-dgg.png]]
 
 ** How to store time series
 - Resample to data cube 
