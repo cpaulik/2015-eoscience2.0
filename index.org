@@ -366,7 +366,7 @@ digraph G {
                 algo [label="Algorithm"]
                 store [label="Storage of results" shape=Mrecord]
 
-                {data1}->spatial 
+                {data1}->spatial [label="e.g. pynetCF"]
                 {data}->spatial [label="pygeogrids"]
                 spatial->dataprep [label="pytesmo"]
                 dataprep->algo [label="pytesmo"]

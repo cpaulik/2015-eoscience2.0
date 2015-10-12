@@ -21,9 +21,9 @@
 </g>
 <!-- data&#45;&gt;spatial -->
 <g id="edge2" class="edge"><title>data&#45;&gt;spatial</title>
-<path fill="none" stroke="Gray" d="M50.5218,-178.641C54.6171,-167.779 61.0471,-154.001 70,-144 73.9681,-139.567 78.6284,-135.494 83.5372,-131.816"/>
-<polygon fill="Gray" stroke="Gray" points="85.7131,-134.567 91.9548,-126.006 81.7366,-128.806 85.7131,-134.567"/>
-<text text-anchor="middle" x="111.5" y="-148.3" font-family="Hack" font-size="14.00" fill="#42affa">pygeogrids</text>
+<path fill="none" stroke="Gray" d="M35.5996,-178.745C31.0926,-167.926 28.0258,-154.155 35,-144 38.1743,-139.378 42.0508,-135.366 46.3945,-131.884"/>
+<polygon fill="Gray" stroke="Gray" points="48.4278,-134.733 54.6672,-126.171 44.4498,-128.974 48.4278,-134.733"/>
+<text text-anchor="middle" x="76.5" y="-148.3" font-family="Hack" font-size="14.00" fill="#42affa">pygeogrids</text>
 </g>
 <!-- data1 -->
 <g id="node2" class="node"><title>data1</title>
@@ -32,8 +32,9 @@
 </g>
 <!-- data1&#45;&gt;spatial -->
 <g id="edge1" class="edge"><title>data1&#45;&gt;spatial</title>
-<path fill="none" stroke="Gray" d="M195.865,-178.917C188.091,-168.421 177.52,-154.937 167,-144 163.363,-140.218 159.352,-136.415 155.307,-132.78"/>
-<polygon fill="Gray" stroke="Gray" points="157.413,-129.973 147.572,-126.048 152.817,-135.253 157.413,-129.973"/>
+<path fill="none" stroke="Gray" d="M191.799,-178.812C179.67,-165.942 162.902,-148.152 149.329,-133.751"/>
+<polygon fill="Gray" stroke="Gray" points="151.573,-131.029 142.167,-126.153 146.479,-135.83 151.573,-131.029"/>
+<text text-anchor="middle" x="221" y="-148.3" font-family="Hack" font-size="14.00" fill="#42affa">e.g. pynetCF</text>
 </g>
 <!-- dataprep -->
 <g id="node4" class="node"><title>dataprep</title>
