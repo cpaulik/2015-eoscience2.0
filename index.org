@@ -402,6 +402,7 @@ digraph G {
   - [[https://github.com/cpaulik][cpaulik file:./img/GitHub-Mark-Light-64px.png]]
   - [[https://github.com/TUW-GEO][TUW-GEO file:./img/GitHub-Mark-Light-64px.png]]
 - Thanks to the Python open source community.
+[[http://creativecommons.org/licenses/by/4.0/deed][http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-sa.svg]]
 
 * References 
 bibliographystyle:plain
