@@ -297,6 +297,7 @@ digraph structs {
 - Framework for time series based computations parallelized via
   [[http://ipyparallel.readthedocs.org/en/latest/][ipyparallel]] (formerly
   IPython parallel)
+- I/O for soil moisture RS and in-situ datasets
 
 
 ** Example - global validation
