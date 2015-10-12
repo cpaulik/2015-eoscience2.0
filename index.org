@@ -241,12 +241,6 @@ file:./img/CF-DSG-incomplete-multidim.svg
 file:./img/CF-DSG-contigous-ragged.svg
 ** CF - Indexed ragged
 file:./img/CF-DSG-indexed-ragged.svg
-
-** Implemenation for netCDF
-- [[https://github.com/TUW-GEO/pynetCF][pynetCF file:./img/GitHub-Mark-Light-64px.png]] implements the interface for netCDF
-  files according to the CF conventions
-- Works but writing of data can be optimized
-- integration with general purpose packages ([[http://xray.readthedocs.org/en/stable/][xray]])
  
 ** Interface for data I/O
 [[https://github.com/TUW-GEO/pygeobase][pygeobase file:./img/GitHub-Mark-Light-64px.png]] defines abstract base classes for a common interface
@@ -265,6 +259,12 @@ iter_img(startdate, enddate)
     but general purpose implementations are still missing
 #+end_src
 # so now we have the interface but how do we store the time series
+
+** Implemenation for netCDF
+- [[https://github.com/TUW-GEO/pynetCF][pynetCF file:./img/GitHub-Mark-Light-64px.png]] implements the interface for netCDF
+  files according to the CF conventions
+- Works but writing of data can be optimized
+- integration with general purpose packages ([[http://xray.readthedocs.org/en/stable/][xray]])
 
 ** Dataset that knows itself
 
