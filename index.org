@@ -45,7 +45,7 @@
 - Time series based retrieval algorithm
 - Temporal dynamics are often more important for analysis than spatial distribution
 - Grew out of soil moisture validation
-
+file:http://www.esa-soilmoisture-cci.org/sites/default/files/images/soilmoisture_logo_small.png
 # image of soil moisture swath and time series
 
 ** Data preparation for time series analysis
