@@ -393,7 +393,8 @@ digraph G {
   file:./img/GitHub-Mark-Light-64px.png]]  
   [[http://badge.fury.io/py/pygeobase][https://badge.fury.io/py/pygeobase.svg]]
 - [[https://github.com/TUW-GEO/pynetCF][pynetCF
-  file:./img/GitHub-Mark-Light-64px.png]]  
+  file:./img/GitHub-Mark-Light-64px.png]]
+- BSD licensed
 # list of packages with badges and license
 * Thank you, Questions?
 - Get in touch
