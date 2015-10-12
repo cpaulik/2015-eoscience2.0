@@ -37,8 +37,6 @@
 #+Title: Tools for analysis of geospatial time series data.
 
 
-
-
 * Background
 
 - Remote sensing of soil moisture
@@ -119,12 +117,12 @@ digraph G {
 
 
 ** Spatial referencing
-- Discrete Global grids
-  - SMOS grid - Icosahedron Snyder Equal Area (ISEA)
-  - Gaussian Grids - used by ECMWF
 - Grid systems
   - UTM system
   - Equi7 system [cite:bauer2014optimisation]
+- Discrete Global grids
+  - SMOS grid - Icosahedron Snyder Equal Area (ISEA)
+  - Gaussian Grids - used by ECMWF
 
 #+begin_src python :results file :exports results
   from mpl_toolkits.basemap import Basemap
