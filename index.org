@@ -260,7 +260,7 @@ iter_img(startdate, enddate)
 #+end_src
 # so now we have the interface but how do we store the time series
 
-** Implemenation for netCDF
+** Implemenation for netCDF CF
 - [[https://github.com/TUW-GEO/pynetCF][pynetCF file:./img/GitHub-Mark-Light-64px.png]] implements the interface for netCDF
   files according to the CF conventions
 - Works but writing of data can be optimized
@@ -398,10 +398,10 @@ digraph G {
 # list of packages with badges and license
 * Thank you, Questions?
 - Get in touch
-  - christoph.paulik@geo.tuwien.ac.at
   - You can find this presentation at http://cpaulik.github.io/2015-eoscience2.0
   - [[https://github.com/cpaulik][cpaulik file:./img/GitHub-Mark-Light-64px.png]]
   - [[https://github.com/TUW-GEO][TUW-GEO file:./img/GitHub-Mark-Light-64px.png]]
+  - christoph.paulik@geo.tuwien.ac.at
 - Thanks to the Python open source community.
 [[http://creativecommons.org/licenses/by/4.0/deed][http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/by-sa.svg]]
 
